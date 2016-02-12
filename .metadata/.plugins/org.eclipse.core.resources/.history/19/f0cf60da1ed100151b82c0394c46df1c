@@ -1,0 +1,22 @@
+
+public class test {
+
+	public static void main(String[] args) {
+		
+		int[] array = new int[10];
+		for(int i = 0; i<array.length;i++)
+		{
+			array[i] = (int) Math.random();
+		}
+		
+		MinHeap heap = new MinHeap(array);
+		int[] output = heap.returnArray();
+		
+		for ( int i=output.length-1; i > 0; i--)
+		{      
+			System.out.println(output[i]);
+		}
+		
+	}
+
+}

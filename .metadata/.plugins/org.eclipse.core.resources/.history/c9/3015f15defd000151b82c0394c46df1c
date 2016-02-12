@@ -1,0 +1,59 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class Richest {
+
+	public static void main(String[] args) throws FileNotFoundException 
+	{
+		FileReader readFile = new FileReader("data.txt");
+		
+		int[] buffer = readInNumbers(readFile);
+		MinHeap heap = new MinHeap(buffer);
+		buffer = readInNumbers(readFile);
+		
+		for(int i =0; i<buffer.length;i++)
+		{
+			if(buffer[i]>= heap.getRoot())
+			{
+				
+			}
+		}
+		
+		
+	}
+
+	private static int[] readInNumbers(FileReader readFile) throws FileNotFoundException
+	{
+		//FileReader readFile = new FileReader("data.txt");
+		int[] integers = new int [10000];
+		int i=0;
+		try {
+			Scanner input = new Scanner(readFile);
+			while(input.hasNext() && i<10000)
+			{
+				integers[i] = input.nextInt();
+				i++;
+			}
+			input.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	return integers;
+	}
+	
+	private static MinHeap compareWithBuffer(int[] buffer, MinHeap heap)
+	{
+		for(int i =0; i<buffer.length;i++)
+		{
+			if(buffer[i]>= heap.getRoot())
+			{
+				
+			}
+		}
+	return heap;
+	}
+	}
+

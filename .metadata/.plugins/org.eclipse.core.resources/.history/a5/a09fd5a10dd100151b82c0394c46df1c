@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Richest {
+
+	public static void main(String[] args) throws FileNotFoundException 
+	{
+		FileReader readFile = new FileReader("data.txt");
+		MinHeap heap = readInNumbers(readFile);
+		outputToFile(heap);
+	}
+
+	private static MinHeap readInNumbers(FileReader readFile) throws FileNotFoundException
+	{
+		//FileReader readFile = new FileReader("data.txt");
+		int[] buffer = new int [10000];
+		Scanner input = new Scanner(readFile);
+		MinHeap heap = null;
+
+		while (input.hasNext()) //while there are still numbers in the file
+		{
+			int i=1;
+			try {
+				while(input.hasNext() && i<10000) //input 10,000 numbers into the buffer
+				{
+					buffer[i] = input.nextInt();
+					i++;
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+
+			if(heap == null)
+			{
+				heap = new MinHeap(buffer);
+			}
+			compareWithBuffer(buffer,heap);	
+		}
+		input.close();
+
+		return heap;
+	}
+
+	private static MinHeap compareWithBuffer(int[] buffer, MinHeap heap)
+	{
+		for(int i =0; i<buffer.length;i++)
+		{
+			if(buffer[i]>= heap.getRoot())
+			{
+				heap.replaceRoot(buffer[i]);
+			}
+		}
+		return heap;
+	}
+
+	private static void outputToFile(MinHeap minHeap)
+	{
+		int[] heap = minHeap.returnArray();
+		try {
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter("richest.output"));
+			for ( int i = 0; i < heap.length; i++)
+			{      
+				writer.write(heap[i]);
+				writer.newLine();
+			}
+			writer.close();
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+}
+
