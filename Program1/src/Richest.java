@@ -2,77 +2,83 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Richest {
+	
+static final int  MAX_NUM_IN_RAM = 5;
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		FileReader readFile = new FileReader("testdata.txt");
+		FileReader readFile = new FileReader("data.txt");
 		MinHeap heap = readInNumbers(readFile);
-		//outputToFile(heap);
+		outputToFile(heap);
+		
+		//for(int i=0; i<MAX_NUM_IN_RAM;i++)
+			//System.out.println(heap.removeRoot());
+		
 		System.out.println("all done!");
 	}
 
 	private static MinHeap readInNumbers(FileReader readFile) throws FileNotFoundException
 	{
-		//FileReader readFile = new FileReader("data.txt");
-		int[] buffer = new int [10];
+		int[] initalHeap = new int [MAX_NUM_IN_RAM];
 		Scanner input = new Scanner(readFile);
 		MinHeap heap = null;
 
-		while (input.hasNext()) //while there are still numbers in the file
+		if(input.hasNext()) //There is at least one number in the file
 		{
 			int i=1;
 			try {
-				while(input.hasNext() && i<10) //input 10,000 numbers into the buffer
+				while(input.hasNext() && i<MAX_NUM_IN_RAM) //input 10 numbers into the heap
+					{
+							initalHeap[i] = input.nextInt();
+							i++;
+					}
+
+				if(heap == null) //we haven't created a heap yet
+					heap = new MinHeap(initalHeap); //create the initalHeap
+
+				while(input.hasNext())	//While there are numbers in the file
+					{
+						heap = compareWithRoot(input.nextInt(),heap); //Compare them with the root	
+					}
+			}
+				catch(Exception e)
 				{
-					buffer[i] = input.nextInt();
-					i++;
+					e.printStackTrace();
 				}
+				input.close();
+				
 			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-
-			if(heap == null)
-			{
-				heap = new MinHeap(buffer);
-			}
-			compareWithBuffer(buffer,heap);	
-		}
-		input.close();
-
 		return heap;
-	}
+		}
 
-	private static MinHeap compareWithBuffer(int[] buffer, MinHeap heap)
-	{
-		for(int i =0; i<buffer.length;i++)
+		private static MinHeap compareWithRoot(int input, MinHeap heap)
 		{
-			if(buffer[i]>= heap.getRoot())
+			if(input > heap.getRoot())
+				heap.replaceRoot(input);
+			return heap;
+		}
+
+		private static void outputToFile(MinHeap minHeap)
+		{
+			int[] output = new int[MAX_NUM_IN_RAM];
+			for(int i=0; i<MAX_NUM_IN_RAM;i++)
 			{
-				heap.replaceRoot(buffer[i]);
+				output[i] = minHeap.removeRoot();
+			}
+
+			try {
+
+				BufferedWriter writer = new BufferedWriter(new FileWriter("richest.output"));
+				for ( int i=0;i<output.length;i++)
+				{      
+					writer.write(output[i]);
+					writer.newLine();
+					System.out.println(output[i]);
+				}
+				writer.close();
+			} catch(IOException ex) {
+				ex.printStackTrace();
 			}
 		}
-		return heap;
 	}
-
-	
-	/*private static void outputToFile(MinHeap minHeap)
-	{
-		int[] output = minHeap.returnArray();
-		try {
-
-			BufferedWriter writer = new BufferedWriter(new FileWriter("richest.output.txt"));
-			for ( int i=output.length-1; i > 0; i--)
-			{      
-				writer.write(output[i]);
-				writer.newLine();
-				System.out.println(output[i]);
-			}
-			writer.close();
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	} */
-}
 

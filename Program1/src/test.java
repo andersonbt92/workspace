@@ -11,14 +11,20 @@ public class test {
 		}
 		
 		MinHeap heap = new MinHeap(array);
-		//heap.print();
+		
+		//for(int i =0; i<array.length;i++)
+		//{
+			//System.out.println(heap.removeRoot());
+		//}
+		heap.heapSort();
+		int[] sortedHeap = heap.getArray();
 		
 		for(int i =0; i<array.length;i++)
-		{
-			System.out.println(heap.removeRoot());
-		}
-		//heap.heapSort();
+				{
+					System.out.println(sortedHeap[i]);
+				}
 		
+		//System.out.println(heap[1]);
 		//int[] output = heap.returnHeapAsSortedArray();
 		
 		//for(int i=0;i<output.length;i++)
