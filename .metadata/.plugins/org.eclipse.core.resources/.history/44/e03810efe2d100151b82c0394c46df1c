@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Richest {
 	
-static final int  MAX_NUM_IN_RAM = 11;
+static final int  MAX_NUM_IN_RAM = 10;
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
@@ -71,7 +71,11 @@ static final int  MAX_NUM_IN_RAM = 11;
 				BufferedWriter writer = new BufferedWriter(new FileWriter("richest_output.txt"));
 				for ( int i=0;i<output.length;i++)
 				{      
-					writer.write(output[i] + "\n");
+					//send to Integer class
+					Integer number = new Integer(output[i]);
+					int printme = output[i];
+					writer.write(number.toString());
+					writer.newLine();
 					System.out.println(output[i]);
 				}
 				writer.close();

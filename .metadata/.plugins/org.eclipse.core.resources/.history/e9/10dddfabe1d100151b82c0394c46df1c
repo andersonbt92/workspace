@@ -64,7 +64,7 @@ public class MinHeap {
 	
 	public void heapSort()
 	{
-		for(int i = size; i > -1; i--)
+		for(int i = size; i > 2; i--)
 		{
 			swap(1,i);
 			size --;

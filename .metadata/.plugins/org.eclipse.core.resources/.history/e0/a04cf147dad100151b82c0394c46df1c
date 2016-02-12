@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Richest {
 	
-static final int  MAX_NUM_IN_RAM = 11;
+static final int  MAX_NUM_IN_RAM = 5;
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
@@ -19,7 +19,7 @@ static final int  MAX_NUM_IN_RAM = 11;
 
 	private static MinHeap readInNumbers(FileReader readFile) throws FileNotFoundException
 	{
-		int[] initalHeap = new int [MAX_NUM_IN_RAM+1];
+		int[] initalHeap = new int [MAX_NUM_IN_RAM];
 		Scanner input = new Scanner(readFile);
 		MinHeap heap = null;
 
@@ -68,10 +68,11 @@ static final int  MAX_NUM_IN_RAM = 11;
 
 			try {
 
-				BufferedWriter writer = new BufferedWriter(new FileWriter("richest_output.txt"));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("richest.output"));
 				for ( int i=0;i<output.length;i++)
 				{      
-					writer.write(output[i] + "\n");
+					writer.write((output[i]));
+					writer.newLine();
 					System.out.println(output[i]);
 				}
 				writer.close();

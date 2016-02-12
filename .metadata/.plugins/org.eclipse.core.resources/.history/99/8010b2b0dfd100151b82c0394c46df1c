@@ -17,9 +17,9 @@ public class test {
 			//System.out.println(heap.removeRoot());
 		//}
 		heap.heapSort();
-		int[] sortedHeap = heap.getHeapArray();
+		int[] sortedHeap = heap.getArray();
 		
-		for(int i =0; i<sortedHeap.length;i++)
+		for(int i =0; i<array.length;i++)
 				{
 					System.out.println(sortedHeap[i]);
 				}

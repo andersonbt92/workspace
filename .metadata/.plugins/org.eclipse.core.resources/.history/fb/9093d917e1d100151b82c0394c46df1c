@@ -4,14 +4,10 @@ public class MinHeap {
 	private int[] heap;
 	private int size; //number of items in the heap
 
-	/*
-	 * array is an array with index 0 empty
-	 */
 	public MinHeap(int[] array) 
 	{
-		heap=array;
-		//heap = new int[(array.length+1)]; //make an array that is one bigger than the input for 1 based indexing
-		//System.arraycopy(array, 0, heap, 1, array.length);
+		heap = new int[(array.length+1)]; //make an array that is one bigger than the input for 1 based indexing
+		System.arraycopy(array, 0, heap, 1, array.length);
 		//for(int i=0;i<array.length;i++) //for every int in the array
 			//heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
 		this.size = heap.length-1;
@@ -64,7 +60,7 @@ public class MinHeap {
 	
 	public void heapSort()
 	{
-		for(int i = size; i > -1; i--)
+		for(int i = size; i > 2; i--)
 		{
 			swap(1,i);
 			size --;

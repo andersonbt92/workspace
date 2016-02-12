@@ -4,16 +4,11 @@ public class MinHeap {
 	private int[] heap;
 	private int size; //number of items in the heap
 
-	/*
-	 * array is an array with index 0 empty
-	 */
 	public MinHeap(int[] array) 
 	{
-		heap=array;
-		//heap = new int[(array.length+1)]; //make an array that is one bigger than the input for 1 based indexing
-		//System.arraycopy(array, 0, heap, 1, array.length);
-		//for(int i=0;i<array.length;i++) //for every int in the array
-			//heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
+		heap = new int[(array.length+1)]; //make an array that is one bigger than the input for 1 based indexing
+		for(int i=0;i<array.length;i++) //for every int in the array
+			heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
 		this.size = heap.length-1;
 		buildMinHeap();
 		
@@ -28,26 +23,26 @@ public class MinHeap {
 	}
 
 	
-/*	public MinHeap(int maxSize, int[] array) 
-	{
-		this.size=0;
-		heap = new int[(maxSize+1)]; //make an array that is one bigger than the input for 1 based indexing
-		heap[0] = Integer.MIN_VALUE;
-		for(int i=0;i<array.length;i++) //for every int in the array
-			{
-			heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
-			this.size++;
-			}
-		
-		buildMinHeap();
-		System.out.println("PRINTING THE BUILD MIN HEAP");
-		for(int i=1;i<=size;i++)
-		{
-			System.out.println(heap[i]);
-		}
-		System.out.println("DONE");
-		
-	}*/
+//	public MinHeap(int maxSize, int[] array) 
+//	{
+//		this.size=0;
+//		heap = new int[(maxSize+1)]; //make an array that is one bigger than the input for 1 based indexing
+//		heap[0] = Integer.MIN_VALUE;
+//		for(int i=0;i<array.length;i++) //for every int in the array
+//			{
+//			heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
+//			this.size++;
+//			}
+//		
+//		buildMinHeap();
+//		System.out.println("PRINTING THE BUILD MIN HEAP");
+//		for(int i=1;i<=size;i++)
+//		{
+//			System.out.println(heap[i]);
+//		}
+//		System.out.println("DONE");
+//		
+//	}
 
 	public void buildMinHeap()
 	{
@@ -57,16 +52,16 @@ public class MinHeap {
 		}
 	}
 	 
-	public int[] getHeapArray()
+	public int[] getArray()
 	{
 		return heap;
 	}
 	
 	public void heapSort()
 	{
-		for(int i = size; i > -1; i--)
+		for(int i = size; i > 2; i--)
 		{
-			swap(1,i);
+			heap[1] = heap[i];
 			size --;
 			heapify(1);
 			}
