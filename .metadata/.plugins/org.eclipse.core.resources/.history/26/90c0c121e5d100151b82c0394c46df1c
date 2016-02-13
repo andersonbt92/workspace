@@ -27,7 +27,7 @@ static final int  MAX_NUM_IN_RAM = 11;
 		{
 			int i=1;
 			try {
-				while(input.hasNext() && i<(MAX_NUM_IN_RAM+1)) //input 10 numbers into the heap
+				while(input.hasNext() && i<MAX_NUM_IN_RAM) //input 10 numbers into the heap
 					{
 							initalHeap[i] = input.nextInt();
 							i++;
