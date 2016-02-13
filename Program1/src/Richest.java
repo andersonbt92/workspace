@@ -1,15 +1,19 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Richest {
 	
-static final int  MAX_NUM_IN_RAM = 11;
+static final int  MAX_NUM_IN_RAM = 9;
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		FileReader readFile = new FileReader("testdata.txt");
+		FileReader readFile = new FileReader("Mikedata.txt");
 		MinHeap heap = readInNumbers(readFile);
+		heap.heapSort();
+		//for(int i=0;)
 		outputToFile(heap);
+		
 		
 		//for(int i=0; i<MAX_NUM_IN_RAM;i++)
 			//System.out.println(heap.removeRoot());

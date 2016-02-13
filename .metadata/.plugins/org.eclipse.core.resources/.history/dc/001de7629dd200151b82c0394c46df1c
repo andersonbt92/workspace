@@ -1,0 +1,39 @@
+
+public class test {
+
+	public static void main(String[] args) {
+		
+		//int[] array = {3,1,4,5,7,8,2};
+		int[] array = new int[10];
+		for(int i = 0; i<array.length;i++)
+		{
+			array[i] = (int) (Math.random()*100);
+		}
+		
+		MinHeap heap = new MinHeap(array);
+		
+		//for(int i =0; i<array.length;i++)
+		//{
+			//System.out.println(heap.removeRoot());
+		//}
+		
+		heap.heapSort();
+		//heap.removeRootInPlace();
+		int[] sortedHeap = heap.getHeapArray();
+		
+		for(int i = 0; i<sortedHeap.length;i++)
+				{
+					System.out.println(sortedHeap[i]);
+				}
+		
+		//System.out.println(heap[1]);
+		//int[] output = heap.returnHeapAsSortedArray();
+		
+		//for(int i=0;i<output.length;i++)
+		{
+			//System.out.println(output[i]);
+		}
+		
+	}
+
+}

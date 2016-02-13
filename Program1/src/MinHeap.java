@@ -3,7 +3,7 @@ public class MinHeap {
 
 	private int[] heap;
 	private int size; //number of items in the heap
-
+	private int heapStart;
 	/*
 	 * array is an array with index 0 empty
 	 */
@@ -15,6 +15,7 @@ public class MinHeap {
 		//for(int i=0;i<array.length;i++) //for every int in the array
 			//heap[(i+1)] = array[i];	//put each in into the heap with indexing 1
 		this.size = heap.length-1;
+		heapStart = 1;
 		buildMinHeap();
 		
 		/*
@@ -26,6 +27,7 @@ public class MinHeap {
 		System.out.println("DONE");	
 		*/
 	}
+	
 
 	
 /*	public MinHeap(int maxSize, int[] array) 
@@ -51,7 +53,7 @@ public class MinHeap {
 
 	public void buildMinHeap()
 	{
-		for(int seat=(size/2); seat>=1; seat--)
+		for(int seat=(size/2); seat>=heapStart; seat--)
 		{
 			heapify(seat);
 		}
@@ -64,11 +66,12 @@ public class MinHeap {
 	
 	public void heapSort()
 	{
-		for(int i = size; i > -1; i--)
+		for(int i= size; i > 1; i--)
 		{
 			swap(1,i);
 			size --;
-			heapify(1);
+			//buildMinHeap();
+			minHeapify(1);
 			}
 	}
 	
@@ -79,8 +82,18 @@ public class MinHeap {
 
 	public void replaceRoot(int value)
 	{
-		heap[1]=value;
-		heapify(1);
+		heap[heapStart]=value;
+		heapify(heapStart);
+	}
+	
+	public void removeRootInPlace()
+	{
+		for(int i= 1;i<(heap.length-1); i++)
+		{
+		size--;
+		heapStart++;
+		buildMinHeap();
+		}
 	}
 
 	public int removeRoot()
@@ -97,9 +110,68 @@ public class MinHeap {
 		return root;
 	}
 
+	
+	/*
+	private void minHeapifyWithout(int seat){
+        int left = lChild(seat);
+        int right = rChild(seat);
+        int min;
+        if(size >= left && heap[left] < heap[seat]){
+            min = left;
+        }else{
+            min = seat;
+        }
+
+        if(size >= right && heap[right] < heap[min]){
+            min = right;
+        }
+
+        if(min != seat){
+            swap(seat, min);
+            minHeapify(lChild(seat));
+            minHeapify(rChild(seat));
+        }
+    }
+	
+	private int lChild(int pos)
+	{
+		return (pos * 2);
+	}
+	private int rChild(int pos)
+	{
+		return ((pos * 2) + 1);
+	}
+	
+	*/
+ private void minHeapify(int seat)
+ {
+        int left = leftChild(seat);
+        int right = rightChild(seat);
+        int min;
+        if(left != -1 && heap[left] < heap[seat]){
+            min = left;
+        }else
+        {
+            min = seat;
+        }
+
+        if(right != -1 && heap[right] < heap[min]){
+            min = right;
+        }
+
+        if(min != seat){
+            swap(seat, min);
+            if(left !=-1)
+            	minHeapify(left);
+            if(right !=-1)
+            	minHeapify(right);
+        }
+    }
+		
 	private void heapify(int seat) {
 		int leftChildIndex = leftChild(seat);
 		int rightChildIndex = rightChild(seat);
+		//int min;
 
 		if (!isLeaf(seat)) //If it is not a leaf
 		{
@@ -112,6 +184,7 @@ public class MinHeap {
 						swap(seat,leftChildIndex);
 						//buildMinHeap();
 						heapify(leftChildIndex);
+						heapify(rightChildIndex);
 					}
 
 					else if (heap[rightChildIndex] < heap[leftChildIndex]) // Right child is the smallest
@@ -119,7 +192,7 @@ public class MinHeap {
 						swap(seat,rightChildIndex);
 						//buildMinHeap();
 						heapify(rightChildIndex);
-						//heapify(seat);
+						heapify(leftChildIndex);
 					}
 				}
 			}
@@ -174,6 +247,11 @@ public class MinHeap {
 			return -1; // There is no rightChild
 		else
 			return RChildSeat;
+	}
+
+
+	public int[] returnArray() {
+		return heap;
 	}
 
 

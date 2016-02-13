@@ -5,7 +5,7 @@ public class test {
 		
 		//int[] array = {3,1,4,5,7,8,2};
 		int[] array = new int[10];
-		for(int i = 0; i<array.length;i++)
+		for(int i = 1; i<array.length;i++)
 		{
 			array[i] = (int) (Math.random()*100);
 		}
@@ -16,10 +16,12 @@ public class test {
 		//{
 			//System.out.println(heap.removeRoot());
 		//}
+		
 		heap.heapSort();
+		//heap.removeRootInPlace();
 		int[] sortedHeap = heap.getHeapArray();
 		
-		for(int i =0; i<sortedHeap.length;i++)
+		for(int i = 1; i<sortedHeap.length;i++)
 				{
 					System.out.println(sortedHeap[i]);
 				}
