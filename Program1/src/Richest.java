@@ -1,14 +1,13 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Richest {
 	
-static final int  MAX_NUM_IN_RAM = 9;
+static final int  MAX_NUM_IN_RAM = 10000;
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		FileReader readFile = new FileReader("Mikedata.txt");
+		FileReader readFile = new FileReader("num.txt");
 		MinHeap heap = readInNumbers(readFile);
 		heap.heapSort();
 		//for(int i=0;)
@@ -62,21 +61,22 @@ static final int  MAX_NUM_IN_RAM = 9;
 			return heap;
 		}
 
-		private static void outputToFile(MinHeap minHeap)
+		private static void outputToFile(MinHeap heap)
 		{
-			int[] output = new int[MAX_NUM_IN_RAM];
-			for(int i=0; i<MAX_NUM_IN_RAM;i++)
+			int[] output = heap.getHeapArray();
+			//int[] output = new int[MAX_NUM_IN_RAM];
+			//for(int i=0; i<MAX_NUM_IN_RAM;i++)
 			{
-				output[i] = minHeap.removeRoot();
+				//output[i] = minHeap.removeRoot();
 			}
 
 			try {
 
-				BufferedWriter writer = new BufferedWriter(new FileWriter("richest_output.txt"));
-				for ( int i=0;i<output.length;i++)
+				BufferedWriter writer = new BufferedWriter(new FileWriter("numoutput"));
+				for ( int i=1;i<output.length;i++)
 				{      
 					writer.write(output[i] + "\n");
-					System.out.println(output[i]);
+					//System.out.println(output[i]);
 				}
 				writer.close();
 			} catch(IOException ex) {

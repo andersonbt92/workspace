@@ -55,7 +55,7 @@ public class MinHeap {
 	{
 		for(int seat=(size/2); seat>=heapStart; seat--)
 		{
-			heapify(seat);
+			minHeapify(seat);
 		}
 	}
 	 
@@ -247,11 +247,6 @@ public class MinHeap {
 			return -1; // There is no rightChild
 		else
 			return RChildSeat;
-	}
-
-
-	public int[] returnArray() {
-		return heap;
 	}
 
 

@@ -988,3 +988,8 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/Program1/src/t
 !MESSAGE Save operation warnings.
 !SUBENTRY 1 org.eclipse.core.resources 2 234 2016-02-12 12:57:27.538
 !MESSAGE The project description file (.project) for 'Program1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY org.eclipse.core.resources 2 2 2016-02-13 15:00:23.411
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2016-02-13 15:00:23.411
+!MESSAGE The project description file (.project) for 'algorithims programing 1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
