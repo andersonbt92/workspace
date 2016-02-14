@@ -4,9 +4,6 @@ import java.util.Scanner;
 /*
  * A class that reads in a integer file from the command line and outputs the top 10000 numbers in descending order
  * into a text file named "richest.output"
- * @author Beth Anderson
- * CSCD 320 -Winter 2016
- * 
  */
 public class Richest {
 	

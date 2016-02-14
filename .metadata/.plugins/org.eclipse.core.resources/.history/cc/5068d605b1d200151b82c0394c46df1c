@@ -1,7 +1,5 @@
 /*
  * A class that implements a index 1 minimum heap
- * @author Beth Anderson
- * CSCD 320 -Winter 2016
  */
 public class MinHeap {
 
