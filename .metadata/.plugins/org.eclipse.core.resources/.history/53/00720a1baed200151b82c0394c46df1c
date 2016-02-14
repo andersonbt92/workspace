@@ -1,13 +1,10 @@
 import java.io.*;
 import java.util.Scanner;
 
-/*
- * A class that reads in a integer file from the command line and outputs the top 10000 numbers in descending order
- * into a text file named "richest.output"
- */
+
 public class Richest {
 	
-	static final int  MAX_NUM_IN_RAM = 10; //The maximum amount of numbers the program can take at one time
+	static final int  MAX_NUM_IN_RAM = 10000; //The maximum amount of numbers the program can take at one time
 
 		public static void main(String[] args) throws FileNotFoundException 
 		{
@@ -77,7 +74,7 @@ public class Richest {
 					for ( int i=1;i<output.length;i++)
 					{      
 						writer.write(output[i] + "\n");
-						System.out.println(output[i]); //For testing
+						//System.out.println(output[i]); //For testing
 					}
 					writer.close();
 				} catch(IOException ex) {

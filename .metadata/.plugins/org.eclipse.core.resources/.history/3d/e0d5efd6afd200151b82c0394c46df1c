@@ -11,18 +11,18 @@ public class Richest {
 
 		public static void main(String[] args) throws FileNotFoundException 
 		{
-			String fileName = null;
-			if(args.length>0)
+			//String fileName = null;
+			//if(args.length>0)
 			{
-				fileName = args[0]; //Accept a file name from the command line
+				//fileName = args[0]; //Accept a file name from the command line
 			}
-			if(fileName == null)
+			//if(fileName == null)
 			{
-				System.out.println("No file was inputed"); 
+				//System.out.println("No file was inputed"); 
 			}
-			else
+			//else
 			{
-			MinHeap heap = readInNumbers(new FileReader(fileName)); //Read in the numbers from the file
+			MinHeap heap = readInNumbers(new FileReader("num.txt")); //Read in the numbers from the file
 			heap.heapSort(); //Sort the heap for output
 			outputToFile(heap); //Output the file
 			System.out.println("Program complete"); //Finish the program

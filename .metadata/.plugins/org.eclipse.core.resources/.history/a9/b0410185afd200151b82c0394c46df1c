@@ -89,9 +89,9 @@ public class MinHeap {
 			if(min != seat) //if the left or right child is smaller
 			{
 				swap(seat, min); //switch them
-				if(left == min)	//if minimum was the left child
+				if(left !=-1)	//if the left child exists
 					minHeapify(left);
-				if(right == min) //if the minimum was the right child
+				if(right !=-1) //if the right child exists
 					minHeapify(right);
 			}
 		}

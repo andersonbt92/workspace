@@ -26,7 +26,7 @@ public class MinHeap {
 			minHeapify(seat);
 		}
 	}
-
+	 
 	/*
 	 * Compare the root of the min heap with an input. If the input is larger than the root of the minheap,
 	 * then replace the root.
@@ -44,7 +44,7 @@ public class MinHeap {
 	{
 		return heap;
 	}
-
+	
 	/*
 	 * Sort the array underlying the heap in descending order
 	 */
@@ -55,9 +55,9 @@ public class MinHeap {
 			swap(1,i);
 			size --;
 			minHeapify(1);
-		}
+			}
 	}
-
+	
 	/*
 	 * Replace the root of the heap with a new value while maintaining the heap
 	 */
@@ -70,47 +70,45 @@ public class MinHeap {
 	/*
 	 * Heapify the heap starting from the inputed seat
 	 */
-	private void minHeapify(int seat)
-	{
-		if(!isLeaf(seat)) //if the seat is not a leaf node
-		{
-			int left = leftChild(seat);
-			int right = rightChild(seat);
-			int min;
-			
-			if(left != -1 && heap[left] < heap[seat]) //if the left child exits and is smaller than the seat
-				min = left; //the min value is the left child
-			else
-				min = seat; // the min value is the right child
+ private void minHeapify(int seat)
+ {
+	 if(!isLeaf(seat))
+	 {
+        int left = leftChild(seat);
+        int right = rightChild(seat);
+        int min;
+        if(left != -1 && heap[left] < heap[seat]){
+            min = left;
+        }else
+        {
+            min = seat;
+        }
 
-			if(right != -1 && heap[right] < heap[min]) //If the right child exists and is smaller than the min
-				min = right;
+        if(right != -1 && heap[right] < heap[min]){
+            min = right;
+        }
 
-			if(min != seat) //if the left or right child is smaller
-			{
-				swap(seat, min); //switch them
-				if(left == min)	//if minimum was the left child
-					minHeapify(left);
-				if(right == min) //if the minimum was the right child
-					minHeapify(right);
-			}
-		}
-	}
+        if(min != seat){
+            swap(seat, min);
+            if(left !=-1)
+            	minHeapify(left);
+            if(right !=-1)
+            	minHeapify(right);
+        }
+	 }
+    }
 
 
-	/*
-	 * Check if the seat is a leaf node in the heap. Return true if the node is a leaf, false if not a leaf
-	 */
+/*
+ * Check if the seat is a leaf node in the heap. Return true if the node is a leaf, false if not a leaf
+ */
 	private boolean isLeaf(int seat) {
 		if (leftChild(seat) == -1) // The left child doesn't exist
-			return true;
+		return true;
 		else
-			return false;
+		return false;
 	}
 
-	/*
-	 * Swap two elements in the heap
-	 */
 	private void swap(int seat1, int seat2)
 	{
 		int tmp;

@@ -1,0 +1,154 @@
+
+public class MinHeap {
+
+	private int[] heap;
+	private int size; //number of items in the heap
+
+	/*
+	 * array is an array with index 0 empty
+	 */
+	public MinHeap(int[] array) 
+	{
+		heap=array;
+		this.size = heap.length-1;
+		buildMinHeap();
+	}
+
+	public void buildMinHeap()
+	{
+		for(int seat=(size/2); seat>=1; seat--)
+		{
+			minHeapify(seat);
+		}
+	}
+	 
+	public void compareWithRoot(int input)
+	{
+		if(input > heap[1])
+			replaceRoot(input);
+	}
+
+	public int[] getHeapArray()
+	{
+		return heap;
+	}
+	
+	public void heapSort()
+	{
+		for(int i= size; i > 1; i--)
+		{
+			swap(1,i);
+			size --;
+			minHeapify(1);
+			}
+	}
+	
+	public void replaceRoot(int value)
+	{
+		heap[1]=value;
+		minHeapify(1);
+	}
+	
+	
+	/*
+	private void minHeapifyWithout(int seat){
+        int left = lChild(seat);
+        int right = rChild(seat);
+        int min;
+        if(size >= left && heap[left] < heap[seat]){
+            min = left;
+        }else{
+            min = seat;
+        }
+
+        if(size >= right && heap[right] < heap[min]){
+            min = right;
+        }
+
+        if(min != seat){
+            swap(seat, min);
+            minHeapify(lChild(seat));
+            minHeapify(rChild(seat));
+        }
+    }
+	
+	private int lChild(int pos)
+	{
+		return (pos * 2);
+	}
+	private int rChild(int pos)
+	{
+		return ((pos * 2) + 1);
+	}
+	
+	*/
+ private void minHeapify(int seat)
+ {
+	 if(!isLeaf(seat))
+	 {
+        int left = leftChild(seat);
+        int right = rightChild(seat);
+        int min;
+        if(left != -1 && heap[left] < heap[seat]){
+            min = left;
+        }else
+        {
+            min = seat;
+        }
+
+        if(right != -1 && heap[right] < heap[min]){
+            min = right;
+        }
+
+        if(min != seat){
+            swap(seat, min);
+            if(left !=-1)
+            	minHeapify(left);
+            if(right !=-1)
+            	minHeapify(right);
+        }
+	 }
+    }
+
+
+	private boolean isLeaf(int seat) {
+		if (leftChild(seat) == -1) // The left child doesn't exist
+		return true;
+		else
+		return false;
+	}
+
+	private void swap(int seat1, int seat2)
+	{
+		int tmp;
+		tmp = heap[seat1];
+		heap[seat1] = heap[seat2];
+		heap[seat2] = tmp;
+	}
+
+	/*
+	 * Return the seat of left child node. Returns -1 if the left child does not
+	 * exist.
+	 */
+	private int leftChild(int seat) {
+		int LChildSeat = (seat * 2);
+		if (LChildSeat > size)
+			return -1; // There is no leftChild
+		else
+			return LChildSeat;
+	}
+
+	/*
+	 * Return the seat of right child node. Returns -1 if the right child does
+	 * not exist.
+	 */
+	private int rightChild(int seat) {
+		int RChildSeat = ((seat * 2) + 1);
+		if (RChildSeat > size)
+			return -1; // There is no rightChild
+		else
+			return RChildSeat;
+	}
+
+
+}
